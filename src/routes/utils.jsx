@@ -42,17 +42,15 @@ export const PubliceRoute = ({ children }) => {
 
     // const { access_token } = useSelector((state) => state.session);
 
-    const access_token = true;
-
     // user is logged in and trying to navigate to non-logged-in routes
-    if (access_token && isPublicRoute(location.pathname)) {
-        return <Navigate replace to={APP_ROUTES.OVERVIEW} />;
-    }
+    // if (access_token && isPublicRoute(location.pathname)) {
+    //     return <Navigate replace to={APP_ROUTES.DASHBOARD} />;
+    // }
 
     // user is not logged in and is visiting the base route [/]
-    if (location.pathname === APP_ROUTES.HOME_URL) {
-        return <Navigate to={APP_ROUTES.LOGIN} replace />;
-    }
+    // if (location.pathname === APP_ROUTES.HOME_URL) {
+    //     return <Navigate to={APP_ROUTES.LOGIN} replace />;
+    // }
 
     if (isPrivateRoute(location.pathname)) {
         return <Navigate to={APP_ROUTES.LOGIN} replace />;
