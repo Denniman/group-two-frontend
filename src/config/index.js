@@ -21,7 +21,6 @@ network.interceptors.request.use(
         };
     },
     (error) => {
-        reportError(error?.response?.data);
         return Promise.reject(error?.response?.data);
     }
 );
