@@ -8,8 +8,11 @@ export const APP_ROUTES = {
     SIGNUP: "/signup",
     HOME_URL: "/",
     NOT_FOUND: "*",
+    STORE: "/store",
     PRODUCTS: "/products",
-    OVERVIEW: "/overview",
+    CUSTOMERS: "/customers",
+    DASHBOARD: "/dashboard",
+    TRANSACTIONS: "/transactions",
 };
 
 export const PUBLIC_ROUTES = [
@@ -19,4 +22,10 @@ export const PUBLIC_ROUTES = [
     APP_ROUTES.NOT_FOUND,
 ];
 
-export const PRIVATE_ROUTES = [APP_ROUTES.OVERVIEW, APP_ROUTES.PRODUCTS];
+export const PRIVATE_ROUTES = [
+    APP_ROUTES.STORE,
+    APP_ROUTES.PRODUCTS,
+    APP_ROUTES.CUSTOMERS,
+    APP_ROUTES.DASHBOARD,
+    APP_ROUTES.TRANSACTIONS,
+];

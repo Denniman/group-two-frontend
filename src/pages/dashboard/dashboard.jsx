@@ -1,10 +1,7 @@
-import { Button } from "../../components";
-
 export const Dashboard = () => {
     return (
         <div>
-            Dashboard page
-            <Button />
+            <h1>Dashboard page</h1>
         </div>
     );
 };
