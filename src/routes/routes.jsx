@@ -7,6 +7,7 @@ import {
     Store,
     Signup,
     Products,
+    Notfound,
     Customers,
     Dashboard,
     Transactions,
@@ -40,6 +41,14 @@ export function RootRoutes() {
                     element={
                         <PubliceRoute>
                             <Signup />
+                        </PubliceRoute>
+                    }
+                />
+                <Route
+                    path={APP_ROUTES.NOT_FOUND}
+                    element={
+                        <PubliceRoute>
+                            <Notfound />
                         </PubliceRoute>
                     }
                 />
