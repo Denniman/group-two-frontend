@@ -1,3 +1,56 @@
+import { Button, Label, TextInput } from "flowbite-react";
+import { FooterComp, LogoImg, } from "../../components";
+import { Link } from "react-router-dom";
+
+
+
 export const Signup = () => {
-    return <div>signup page</div>;
+  return (
+    <div>
+    <div className="h-screen w-full flex flex-col items-center p-2" style={{background: "linear-gradient(35deg, rgba(105,183,255,1) 0%, rgba(255,255,255,1) 100%)"}}>
+      <div className="w-full px-4 md:px-12 py-4 flex justify-between"> 
+      <LogoImg />
+      <Link to="/login">
+      <Button color="blue" outline >Login</Button>
+      </Link>
+      </div>
+    <div className="h-full flex justify-center md:min-w-96">
+      <div className="w-full flex flex-col justify-center">
+        <div className="flex flex-col">
+          <h1 className="text-4xl font-semibold mb-2"> Create a free account</h1>
+          <p className="mb-4 text-lg">Let&apos;s get to know you</p>
+        </div>
+        <form className="flex flex-col gap-4">
+          <div>
+            <Label value="Your username" />
+            <TextInput type="text" placeholder="Username" id="username" />
+          </div>
+          <div>
+            <Label value="Business name" />
+            <TextInput type="text" placeholder="My Store" id="Business-name" />
+          </div>
+          <div>
+            <Label value="Your email" />
+            <TextInput type="email" placeholder="name@company.com" id="email" />
+          </div>
+          <div>
+            <Label value="Your password" />
+            <TextInput type="password" placeholder="password" id="password" />
+          </div>
+          <Button className="mt-3" color="blue" type="submit">
+            Create Account
+          </Button>
+        </form>
+        <div className="flex gap-2 text-sm mt-5">
+            <span>Have an account?</span>
+            <Link to="/login" className="text-blue-500">
+              Sign In
+            </Link>
+          </div>
+      </div>
+    </div>
+    </div>
+    <FooterComp />
+    </div>
+  );
 };
