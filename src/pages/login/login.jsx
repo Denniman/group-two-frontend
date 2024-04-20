@@ -31,11 +31,7 @@ export const Login = () => {
   const emailError = Boolean(errors.email?.message);
 
   return (
-    <div
-      style={{
-        background: "linear-gradient(35deg, rgba(105,183,255,1) 0%, rgba(255,255,255,1) 100%)",
-      }}
-    >
+    <div>
       <div className="h-screen w-full flex flex-col items-center p-2">
         <div className="w-full px-4 md:px-12 py-4 flex justify-between">
           <LogoImg />
@@ -99,7 +95,7 @@ export const Login = () => {
                 isProcessing={isLoading}
                 disabled={isLoading}
                 className="mt-3"
-                color="blue"
+                color="dark"
                 type="submit"
               >
                 {isLoading ? "Loading" : "Login"}
