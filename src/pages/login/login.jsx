@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export const Login = () => {
   return (
-    <div>
-    <div className="h-screen w-full flex flex-col items-center p-2" style={{background: "linear-gradient(35deg, rgba(105,183,255,1) 0%, rgba(255,255,255,1) 100%)"}}>
+    <div style={{background: "linear-gradient(35deg, rgba(105,183,255,1) 0%, rgba(255,255,255,1) 100%)"}}>
+    <div className="h-screen w-full flex flex-col items-center p-2">
       <div className="w-full px-4 md:px-12 py-4 flex justify-between"> 
       <LogoImg />
       <Link to="/signup">
