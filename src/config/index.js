@@ -1,23 +1,24 @@
 import axios from "axios";
-import { store } from "../providers/store/store";
+
+let token;
+
+export const getStore = (store) => {
+  return (token = store?.getState()?.session.accessToken);
+};
 
 // Set config defaults when creating the instance
 export const network = axios.create({
-  baseURL: `${import.meta.env.BASE_URL}/api/v1/`,
+  baseURL: `${import.meta.env.VITE_BASE_URI}/api/v1/`,
 });
 
 // Add a request interceptor
 network.interceptors.request.use(
   (config) => {
-    // get the current state
-    const state = store.getState();
-
-    // get the JWT token out of it
-    const access_token = state?.session?.access_token;
+    console.log("access_token!", token);
 
     return {
       ...config,
-      headers: { ...config.headers, Authorization: access_token },
+      headers: { ...config.headers, Authorization: token },
     };
   },
   (error) => {

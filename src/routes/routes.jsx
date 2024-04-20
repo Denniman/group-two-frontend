@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { store } from "../providers/store";
+import { getStore } from "../config";
 import { DashboardLayout } from "../components";
 import {
   Login,
@@ -15,8 +16,13 @@ import {
 
 import { APP_ROUTES } from "./urls";
 import { PrivateRoute, PubliceRoute } from "./utils";
+import { useEffect } from "react";
 
 export function RootRoutes() {
+  useEffect(() => {
+    getStore(store);
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
