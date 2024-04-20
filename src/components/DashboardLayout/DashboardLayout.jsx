@@ -13,7 +13,7 @@ import {
 
 export const DashboardLayout = ({ children }) => {
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-screen">
       {/* Sidebar */}
       <div className="w-64 bg-gray-800">
         {/* Sidebar content */}
@@ -57,7 +57,7 @@ export const DashboardLayout = ({ children }) => {
         </header>
 
         {/* Main content area */}
-        <main className="p-4 overflow-y-scroll">{children}</main>
+        <main className="overflow-y-scroll">{children}</main>
       </div>
     </div>
   );

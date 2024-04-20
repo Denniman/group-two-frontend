@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 export const Login = () => {
   return (
-    <div style={{background: "linear-gradient(35deg, rgba(105,183,255,1) 0%, rgba(255,255,255,1) 100%)"}}>
+    <div>
     <div className="h-screen w-full flex flex-col items-center p-2">
       <div className="w-full px-4 md:px-12 py-4 flex justify-between"> 
       <LogoImg />
       <Link to="/signup">
-      <Button color="blue" outline >Create Account</Button>
+      <Button color="dark" outline >Create Account</Button>
       </Link>
       </div>
     <div className="h-full flex justify-center md:min-w-96">
@@ -27,7 +27,7 @@ export const Login = () => {
             <Label value="Your password" />
             <TextInput type="password" placeholder="password" id="password" />
           </div>
-          <Button className="mt-3" color="blue" type="submit">
+          <Button className="mt-3" color="dark" type="submit">
             Login
           </Button>
         </form>

@@ -41,12 +41,12 @@ export const Signup = () => {
     }
   }
   return (
-    <div style={{background: "linear-gradient(35deg, rgba(105,183,255,1) 0%, rgba(255,255,255,1) 100%)"}}>
+    <div>
     <div className="h-screen w-full flex flex-col items-center p-2">
       <div className="w-full px-4 md:px-12 py-4 flex justify-between"> 
       <LogoImg />
       <Link to="/login">
-      <Button color="blue" outline >Login</Button>
+      <Button color="dark" outline >Login</Button>
       </Link>
       </div>
     <div className="h-full flex justify-center md:min-w-96">
@@ -72,7 +72,7 @@ export const Signup = () => {
             <Label value="Your password" />
             <TextInput type="password" placeholder="password" id="password" onChange={handleChange}/>
           </div>
-          <Button className="mt-3" color="blue" type="submit" disabled={loading}> 
+          <Button className="mt-3" color="dark" type="submit" disabled={loading}> 
             Create Account
           </Button>
         </form>
