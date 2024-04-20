@@ -1,5 +1,6 @@
 import { RootRoutes } from "./routes";
-import Provider from "./providers/Providers";
+
+import Provider from "./providers/StoreProvider";
 
 function App() {
   return (

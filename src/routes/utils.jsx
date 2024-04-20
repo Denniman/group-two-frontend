@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { APP_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from "./urls";
 
 const isPrivateRoute = (route) => {
   const hasPartialMatch = PRIVATE_ROUTES.some((routeFromList) => route.includes(routeFromList));
-  // for routes that contain parameters example: `/user/forgot_password/:id/:token`
+
   const match = PRIVATE_ROUTES.includes(route);
   return hasPartialMatch || match;
 };
@@ -17,10 +18,9 @@ const isPublicRoute = (route) => {
 
 export const PrivateRoute = ({ children }) => {
   const location = useLocation();
-  // const { access_token } = useSelector((state) => state.session);
-  const access_token = true;
+  const { accessToken } = useSelector((state) => state.session);
 
-  if (access_token && isPrivateRoute(location.pathname)) {
+  if (accessToken && isPrivateRoute(location.pathname)) {
     return children;
   }
 
@@ -30,17 +30,17 @@ export const PrivateRoute = ({ children }) => {
 export const PubliceRoute = ({ children }) => {
   const location = useLocation();
 
-  // const { access_token } = useSelector((state) => state.session);
+  const { accessToken } = useSelector((state) => state.session);
 
   // user is logged in and trying to navigate to non-logged-in routes
-  // if (access_token && isPublicRoute(location.pathname)) {
-  //     return <Navigate replace to={APP_ROUTES.DASHBOARD} />;
-  // }
+  if (accessToken && isPublicRoute(location.pathname)) {
+    return <Navigate replace to={APP_ROUTES.DASHBOARD} />;
+  }
 
   // user is not logged in and is visiting the base route [/]
-  // if (location.pathname === APP_ROUTES.HOME_URL) {
-  //     return <Navigate to={APP_ROUTES.LOGIN} replace />;
-  // }
+  if (location.pathname === APP_ROUTES.HOME_URL) {
+    return <Navigate to={APP_ROUTES.LOGIN} replace />;
+  }
 
   if (isPrivateRoute(location.pathname)) {
     return <Navigate to={APP_ROUTES.LOGIN} replace />;
