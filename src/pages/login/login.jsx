@@ -36,7 +36,7 @@ export const Login = () => {
         <div className="w-full px-4 md:px-12 py-4 flex justify-between">
           <LogoImg />
           <Link to="/signup">
-            <Button color="blue" outline>
+            <Button color="dark" outline>
               Create Account
             </Button>
           </Link>

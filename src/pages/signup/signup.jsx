@@ -35,7 +35,7 @@ export const Signup = () => {
         <div className="w-full px-4 md:px-12 py-4 flex justify-between">
           <LogoImg />
           <Link to="/login">
-            <Button color="blue" outline>
+            <Button color="dark" outline>
               Login
             </Button>
           </Link>
