@@ -2,9 +2,10 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { FLUSH, PURGE, PERSIST, REHYDRATE, persistStore, persistReducer } from "redux-persist";
 import sessionStorage from "redux-persist/lib/storage/session";
 
-import { CACHE_VERSION, __ROOT_REDUX_STATE_KEY__ } from "../../constants";
+import { CACHE_VERSION, __ROOT_REDUX_STATE_KEY__ } from "../constants";
 
-import session from "../session/session-slice";
+import userSession from "./session/session-slice";
+import merchantStoreSlice from "./merchantStore/merchantStore";
 
 const persistConfig = {
   timeout: 10000,
@@ -14,7 +15,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  session,
+  session: userSession,
+  merchantStoreSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

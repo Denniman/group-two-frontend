@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Provider as ReduxProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-import * as store from "./store/store";
+import * as store from "./store";
 
 const Provider = ({ children }) => (
   <ReduxProvider store={store.store}>
