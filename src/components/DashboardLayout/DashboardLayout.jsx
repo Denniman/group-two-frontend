@@ -19,10 +19,9 @@ export const DashboardLayout = ({ children }) => {
   const merchantId = `${firstPart}***${lastPart}`;
 
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar */}
+    <div className="flex h-screen">
       <div className="w-64 bg-gray-800">
-        <Sidebar aria-label="Sidebar with logo branding example">
+        <Sidebar aria-label="Sidebar with logo branding">
           <Sidebar.Logo href="#" img="/assets/react.svg">
             <h2 className="text-lg text-slate-700">
               {`${data?.user.firstName}`} {`${data?.user.lastName}`}
@@ -59,8 +58,8 @@ export const DashboardLayout = ({ children }) => {
         <header className="bg-white p-4 shadow-md flex justify-center">
           <TextInput placeholder="Search" icon={HiSearch} className="w-2/4" />
         </header>
-        {/* Main content area */}
-        <main className="overflow-y-scroll">{children}</main>
+
+        <main className="p-4 overflow-y-scroll">{children}</main>
       </div>
     </div>
   );

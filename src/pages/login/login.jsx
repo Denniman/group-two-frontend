@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Label, TextInput } from "flowbite-react";
@@ -10,7 +11,8 @@ import { useFormValidation } from "../../hooks";
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const { isLoading, data } = useSelector((state) => state.session);
+
+  const { isLoading } = useSelector((state) => state.session);
   const { emailValidation, loginPasswordValidation } = useFormValidation();
   const {
     control,
@@ -19,12 +21,8 @@ export const Login = () => {
   } = useForm();
 
   const onSubmit = (payload) => {
-    console.log(payload);
-
     dispatch(loginUser({ ...payload }));
   };
-
-  console.log("data", data);
 
   const passwordError = Boolean(errors.password?.message);
 

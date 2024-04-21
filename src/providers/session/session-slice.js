@@ -7,6 +7,7 @@ const initialState = {
   data: null,
   isLoading: false,
   accessToken: null,
+  signUpSuccess: false,
 };
 
 export const loginUser = createAsyncThunk("session/login", async (payload, thunkAPI) => {
@@ -21,17 +22,19 @@ export const loginUser = createAsyncThunk("session/login", async (payload, thunk
   }
 });
 
-export const registerUser = createAsyncThunk("session/signup", async (payload, thunkAPI) => {
-  try {
-    const data = await register(payload);
-    toast.success("Congrats!🎉 Welcome to SwitchCommerce.");
-    return data;
-  } catch (error) {
-    const message = error?.response?.data.message;
-    toast.error(message);
-    return thunkAPI.rejectWithValue(message);
+export const registerUser = createAsyncThunk(
+  "session/signup",
+  async (payload, onCallback, thunkAPI) => {
+    try {
+      await register(payload);
+      toast.success("Congrats!🎉 Welcome to SwitchCommerce.");
+    } catch (error) {
+      const message = error?.response?.data.message;
+      toast.error(message);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 const sessionSlice = createSlice({
   name: "sessionSlice",
@@ -39,6 +42,7 @@ const sessionSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.isLoading = false;
+      state.signUpSuccess = false;
     },
   },
   extraReducers: (builder) => {
@@ -57,12 +61,13 @@ const sessionSlice = createSlice({
     builder.addCase(registerUser.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(registerUser.fulfilled, (state, action) => {
+    builder.addCase(registerUser.fulfilled, (state) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.signUpSuccess = true;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       state.isLoading = false;
+      state.signUpSuccess = false;
       state.error = action.payload;
     });
   },
