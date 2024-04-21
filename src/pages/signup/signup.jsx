@@ -9,7 +9,7 @@ import { registerUser } from "../../providers/session/session-slice";
 
 export const Signup = () => {
   const dispatch = useDispatch();
-  const { isLoading, data } = useSelector((state) => state.session);
+  const { isLoading } = useSelector((state) => state.session);
   const { emailValidation, loginPasswordValidation, firstNameValidation, lastNameValidation } =
     useFormValidation();
   const {
@@ -19,12 +19,9 @@ export const Signup = () => {
   } = useForm();
 
   const onSubmit = (payload) => {
-    console.log(payload);
-
     dispatch(registerUser({ ...payload }));
   };
 
-  console.log("data!", data);
   const passwordError = Boolean(errors.password?.message);
 
   const emailError = Boolean(errors.email?.message);

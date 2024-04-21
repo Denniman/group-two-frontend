@@ -14,8 +14,6 @@ export const network = axios.create({
 // Add a request interceptor
 network.interceptors.request.use(
   (config) => {
-    console.log("access_token!", token);
-
     return {
       ...config,
       headers: { ...config.headers, Authorization: token },

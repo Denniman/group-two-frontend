@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "../../components";
 export const Dashboard = () => {
   const navigate = useNavigate();
+
   return (
     <div>
       <h1>Dashboard page</h1>
@@ -67,7 +68,9 @@ export const Dashboard = () => {
         </div>
       </div>
       <div className="mt-3 flex justify-end">
-        <Button color="dark">Create store</Button>
+        <Button color="dark" onClick={() => navigate("/store")}>
+          Create store
+        </Button>
       </div>
 
       <article className="border-gray-300 rounded border px-3 py-2 mt-5 max-w-3xl min-h-96">
