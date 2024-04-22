@@ -1,6 +1,8 @@
 import { toast } from "sonner";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login, register } from "../../network";
+import { login, register, logOut } from "../../network";
+import { persistor } from "../store";
+// import { __ROOT_REDUX_STATE_KEY__ } from "../../constants";
 
 const initialState = {
   error: null,
@@ -22,19 +24,29 @@ export const loginUser = createAsyncThunk("session/login", async (payload, thunk
   }
 });
 
-export const registerUser = createAsyncThunk(
-  "session/signup",
-  async (payload, onCallback, thunkAPI) => {
-    try {
-      await register(payload);
-      toast.success("Congrats!🎉 Welcome to SwitchCommerce.");
-    } catch (error) {
-      const message = error?.response?.data.message;
-      toast.error(message);
-      return thunkAPI.rejectWithValue(message);
-    }
+export const registerUser = createAsyncThunk("session/signup", async (payload, thunkAPI) => {
+  try {
+    await register(payload);
+    toast.success("Congrats!🎉 Welcome to SwitchCommerce.");
+  } catch (error) {
+    const message = error?.response?.data.message;
+    toast.error(message);
+    return thunkAPI.rejectWithValue(message);
   }
-);
+});
+
+export const logout = createAsyncThunk("session/logout", async (thunkAPI) => {
+  try {
+    await logOut();
+    persistor.purge();
+    persistor.flush();
+    toast.success("Success");
+  } catch (error) {
+    const message = error?.response?.data.message;
+    toast.error(message);
+    return thunkAPI.rejectWithValue(message);
+  }
+});
 
 const sessionSlice = createSlice({
   name: "sessionSlice",
@@ -68,6 +80,16 @@ const sessionSlice = createSlice({
     builder.addCase(registerUser.rejected, (state, action) => {
       state.isLoading = false;
       state.signUpSuccess = false;
+      state.error = action.payload;
+    });
+    builder.addCase(logout.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(logout.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(logout.rejected, (state, action) => {
+      state.isLoading = false;
       state.error = action.payload;
     });
   },
