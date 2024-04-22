@@ -1,23 +1,31 @@
 import { toast } from "sonner";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../../network";
+import { createStore } from "../../network";
 
 const initialState = {
   error: null,
   data: null,
+  storeId: null,
+  storeName: null,
+  storeUrl: null,
   isLoading: false,
 };
 
-export const loginUser = createAsyncThunk("merchantStore/create", async (payload, thunkAPI) => {
-  try {
-    const data = await login(payload);
-    return data;
-  } catch (error) {
-    const message = error.message;
-    toast.error(message);
-    return thunkAPI.rejectWithValue(message);
+export const createMerchantStore = createAsyncThunk(
+  "merchantStore/create",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await createStore(payload);
+      console.log("data!", data);
+      toast.success("Store created successfully!");
+      return data;
+    } catch (error) {
+      const message = error.message;
+      toast.error(message);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 const merchantStoreSlice = createSlice({
   name: "merchantStore",
@@ -28,14 +36,15 @@ const merchantStoreSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loginUser.pending, (state) => {
+    builder.addCase(createMerchantStore.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(loginUser.fulfilled, (state, action) => {
+    builder.addCase(createMerchantStore.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
+      state.storeName = action.payload;
     });
-    builder.addCase(loginUser.rejected, (state, action) => {
+    builder.addCase(createMerchantStore.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
       state.error = action.error.message;

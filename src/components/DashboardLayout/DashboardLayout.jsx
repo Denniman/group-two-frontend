@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { Sidebar, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   HiUser,
   HiSearch,
@@ -11,8 +12,12 @@ import {
   HiShoppingBag,
 } from "react-icons/hi";
 
+import { logout } from "../../providers/session/session-slice";
+
 export const DashboardLayout = ({ children }) => {
   const { data } = useSelector((state) => state.session);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const firstPart = data?.user.id.substring(2, 5);
   const lastPart = data?.user.id.substring(data?.user.id.length - 3);
@@ -46,20 +51,29 @@ export const DashboardLayout = ({ children }) => {
               <Sidebar.Item icon={HiShoppingBag}>
                 <Link to={"/store"}>Store</Link>
               </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiArrowSmLeft}>
-                Log out
+              <Sidebar.Item icon={HiArrowSmLeft}>
+                <button
+                  icon={HiArrowSmLeft}
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate("/login");
+                  }}
+                  className="bg-transparent border-none outline-none"
+                >
+                  Log out
+                </button>
               </Sidebar.Item>
             </Sidebar.ItemGroup>
           </Sidebar.Items>
         </Sidebar>
       </div>
 
-      <div className="flex-1 bg-gray-100">
+      <div className="flex-1 bg-gray-100 overflow-y-auto">
         <header className="bg-white p-4 shadow-md flex justify-center">
           <TextInput placeholder="Search" icon={HiSearch} className="w-2/4" />
         </header>
 
-        <main className="p-4 overflow-y-scroll">{children}</main>
+        <main className="p-4">{children}</main>
       </div>
     </div>
   );
