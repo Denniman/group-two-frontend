@@ -19,6 +19,7 @@ export const Productlist = () => {
           </Button>
         </div>
       </div>
+      {/* Table */}
     <div className="overflow-x-auto">
     <Table hoverable>
       <Table.Head>

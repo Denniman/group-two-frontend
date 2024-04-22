@@ -19,7 +19,7 @@ export const DashboardLayout = ({ children }) => {
   const merchantId = `${firstPart}***${lastPart}`;
 
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-screen">
       <div className="w-64 bg-gray-800">
         <Sidebar aria-label="Sidebar with logo branding">
           <Sidebar.Logo href="#" img="/assets/react.svg">
