@@ -31,7 +31,7 @@ export const Dashboard = () => {
     <div>
       <div className="flex gap-2 flex-col md:flex-row">
         <div className="flex-1">
-          <Card heading="Total Transactios" subHeading="405" className="flex-1 w-32">
+          <Card heading="Total Transactios" subHeading={405} className="flex-1 w-32">
             <Button color="light" onClick={() => navigate("/transactions")}>
               View more
               <svg
@@ -69,7 +69,7 @@ export const Dashboard = () => {
           </Card>
         </div>
         <div className="flex-1">
-          <Card heading="Total Orders" subHeading="195">
+          <Card heading="Total Orders" subHeading={195}>
             <Button color="light" onClick={() => navigate("/customers")}>
               View more
               <svg
