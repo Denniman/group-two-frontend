@@ -11,7 +11,7 @@ import {
   StoreForm,
   Customers,
   Dashboard,
-  StoreInFo,
+  StoreDetails,
   ProductsForm,
   ProductsList,
   Transactions,
@@ -116,7 +116,7 @@ export function RootRoutes() {
           element={
             <PrivateRoute>
               <DashboardLayout>
-                <StoreInFo />
+                <StoreDetails />
               </DashboardLayout>
             </PrivateRoute>
           }

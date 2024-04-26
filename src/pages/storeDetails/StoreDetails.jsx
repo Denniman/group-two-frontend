@@ -6,7 +6,7 @@ import { Label, TextInput } from "flowbite-react";
 import { LoadingSpiner } from "../../components";
 import { getStore } from "../../providers/merchantStore/merchantStore";
 
-export const StoreInFo = () => {
+export const StoreDetails = () => {
   const dispatch = useDispatch();
 
   const { storeName, storeId, isLoading } = useSelector((state) => state.merchantStoreSlice);
