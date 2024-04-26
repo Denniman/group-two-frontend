@@ -6,11 +6,12 @@ import { DashboardLayout } from "../components";
 import {
   Login,
   Home,
-  Store,
   Signup,
   Notfound,
+  StoreForm,
   Customers,
   Dashboard,
+  StoreInFo,
   ProductsForm,
   ProductsList,
   Transactions,
@@ -101,11 +102,21 @@ export function RootRoutes() {
           }
         />
         <Route
-          path={APP_ROUTES.STORE}
+          path={APP_ROUTES.CREATE_STORE}
           element={
             <PrivateRoute>
               <DashboardLayout>
-                <Store />
+                <StoreForm />
+              </DashboardLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={APP_ROUTES.STORE_INFO}
+          element={
+            <PrivateRoute>
+              <DashboardLayout>
+                <StoreInFo />
               </DashboardLayout>
             </PrivateRoute>
           }

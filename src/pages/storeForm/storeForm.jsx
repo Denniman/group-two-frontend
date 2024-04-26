@@ -5,7 +5,7 @@ import { Button, Label, Spinner, Select, TextInput, Textarea } from "flowbite-re
 import { ChromePicker } from "react-color";
 import { createMerchantStore } from "../../providers/merchantStore/merchantStore";
 
-export const Store = () => {
+export const StoreForm = () => {
   const dispatch = useDispatch();
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
 
@@ -16,7 +16,6 @@ export const Store = () => {
   const { control, handleSubmit } = useForm();
 
   const onSubmit = (payload) => {
-    console.log({ ...payload, color, backgroundColor });
     const filteredPayload = Object.entries(payload).reduce((acc, [key, value]) => {
       if (value) {
         acc[key] = value;

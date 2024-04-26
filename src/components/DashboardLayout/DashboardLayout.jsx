@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Sidebar, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { HiUser, HiSearch, HiChartPie, HiViewBoards, HiShoppingBag } from "react-icons/hi";
 import { TbLogout2 } from "react-icons/tb";
@@ -10,11 +10,21 @@ import { logout } from "../../providers/session/session-slice";
 
 export const DashboardLayout = ({ children }) => {
   const { data } = useSelector((state) => state.session);
+  const { storeName } = useSelector((state) => state.merchantStoreSlice);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const firstPart = data?.user.id.substring(2, 5);
   const lastPart = data?.user.id.substring(data?.user.id.length - 3);
   const merchantId = `${firstPart}***${lastPart}`;
+
+  const storeNavigation = () => {
+    if (storeName) {
+      navigate("/store/info");
+    } else {
+      navigate("/store/creat-store");
+    }
+  };
 
   return (
     <div className="flex h-screen">
@@ -29,20 +39,20 @@ export const DashboardLayout = ({ children }) => {
           <Sidebar.Items>
             <Sidebar.ItemGroup>
               <Sidebar.Item icon={HiChartPie}>
-                <Link to={"/dashboard"}>Dashboard</Link>
+                <button onClick={() => navigate("/dashboard")}>Dashboard</button>
               </Sidebar.Item>
               <Sidebar.Item icon={HiViewBoards}>
-                <Link to={"/transactions"}>Transaction</Link>
+                <button onClick={() => navigate("/transactions")}>Transaction</button>
               </Sidebar.Item>
 
               <Sidebar.Item href="#" icon={HiUser}>
-                Customers
+                <button onClick={() => navigate("/customers")}>Customers</button>
               </Sidebar.Item>
               <Sidebar.Item icon={MdOutlineProductionQuantityLimits}>
-                <Link to={"/products/list"}>Products</Link>
+                <button onClick={() => navigate("/products/list")}>Products</button>
               </Sidebar.Item>
               <Sidebar.Item icon={HiShoppingBag}>
-                <Link to={"/store"}>Store</Link>
+                <button onClick={storeNavigation}>Store</button>
               </Sidebar.Item>
               <Sidebar.Item icon={TbLogout2}>
                 <button
