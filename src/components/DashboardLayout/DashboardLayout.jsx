@@ -6,7 +6,7 @@ import { HiUser, HiSearch, HiChartPie, HiViewBoards, HiShoppingBag } from "react
 import { TbLogout2 } from "react-icons/tb";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 
-import { logout } from "../../providers/session/session-slice";
+import { resetAssess } from "../../providers/session/session-slice";
 
 export const DashboardLayout = ({ children }) => {
   const { data } = useSelector((state) => state.session);
@@ -57,7 +57,7 @@ export const DashboardLayout = ({ children }) => {
               <Sidebar.Item icon={TbLogout2}>
                 <button
                   onClick={() => {
-                    dispatch(logout());
+                    dispatch(resetAssess());
                   }}
                   className="bg-transparent border-none outline-none"
                 >
