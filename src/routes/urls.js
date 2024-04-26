@@ -13,6 +13,8 @@ export const APP_ROUTES = {
   CUSTOMERS: "/customers",
   DASHBOARD: "/dashboard",
   TRANSACTIONS: "/transactions",
+  PRODUCTS_LIST: "/products/list",
+  ADD_PRODUCTS: "/products/add",
 };
 
 export const PUBLIC_ROUTES = [
@@ -27,5 +29,7 @@ export const PRIVATE_ROUTES = [
   APP_ROUTES.PRODUCTS,
   APP_ROUTES.CUSTOMERS,
   APP_ROUTES.DASHBOARD,
+  APP_ROUTES.PRODUCTS_LIST,
+  APP_ROUTES.ADD_PRODUCTS,
   APP_ROUTES.TRANSACTIONS,
 ];

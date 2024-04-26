@@ -1,13 +1,34 @@
+import { useEffect } from "react";
 import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Card } from "../../components";
+import { getStore } from "../../providers/merchantStore/merchantStore";
+
 export const Dashboard = () => {
   const navigate = useNavigate();
+  const { storeName } = useSelector((state) => state.merchantStoreSlice);
+  const { products } = useSelector((state) => state.products);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!storeName) {
+      dispatch(getStore());
+    }
+  }, [dispatch, storeName]);
+
+  const handleNavigation = () => {
+    if (storeName) {
+      navigate("/products");
+    } else {
+      navigate("/store");
+    }
+  };
 
   return (
     <div>
-      <h1>Dashboard page</h1>
-
       <div className="flex gap-2 flex-col md:flex-row">
         <div className="flex-1">
           <Card heading="Total Transactios" subHeading="405" className="flex-1 w-32">
@@ -29,8 +50,8 @@ export const Dashboard = () => {
           </Card>
         </div>
         <div className="flex-1  w-32">
-          <Card heading="Total Customers" subHeading="590" className="w-32">
-            <Button color="light" onClick={() => navigate("/customers")}>
+          <Card heading="Total Products" subHeading={products?.length || 0} className="w-32">
+            <Button color="light" onClick={() => navigate("/products")}>
               View more
               <svg
                 className="-mr-1 ml-2 h-4 w-4"
@@ -68,8 +89,8 @@ export const Dashboard = () => {
         </div>
       </div>
       <div className="mt-3 flex justify-end">
-        <Button color="dark" onClick={() => navigate("/store")}>
-          Create store
+        <Button color="dark" onClick={handleNavigation}>
+          {storeName ? "Add products" : "Create store"}
         </Button>
       </div>
 

@@ -1,26 +1,27 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { store } from "../providers/store";
-import { getStore } from "../config";
 import { DashboardLayout } from "../components";
 import {
   Login,
   Home,
   Store,
   Signup,
-  Products,
   Notfound,
   Customers,
   Dashboard,
+  ProductsForm,
+  ProductsList,
   Transactions,
 } from "../pages";
 
 import { APP_ROUTES } from "./urls";
 import { PrivateRoute, PubliceRoute } from "./utils";
-import { useEffect } from "react";
 
 export function RootRoutes() {
   useEffect(() => {
-    getStore(store);
+    store.getState();
   }, []);
 
   return (
@@ -78,12 +79,23 @@ export function RootRoutes() {
             </PrivateRoute>
           }
         />
+
         <Route
-          path={APP_ROUTES.PRODUCTS}
+          path={APP_ROUTES.PRODUCTS_LIST}
           element={
             <PrivateRoute>
               <DashboardLayout>
-                <Products />
+                <ProductsList />
+              </DashboardLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={APP_ROUTES.ADD_PRODUCTS}
+          element={
+            <PrivateRoute>
+              <DashboardLayout>
+                <ProductsForm />
               </DashboardLayout>
             </PrivateRoute>
           }

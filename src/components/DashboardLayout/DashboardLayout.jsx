@@ -1,23 +1,16 @@
 import PropTypes from "prop-types";
 import { Sidebar, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  HiUser,
-  HiSearch,
-  HiChartPie,
-  HiViewBoards,
-  HiArrowSmLeft,
-  HiShoppingBag,
-} from "react-icons/hi";
+import { HiUser, HiSearch, HiChartPie, HiViewBoards, HiShoppingBag } from "react-icons/hi";
+import { TbLogout2 } from "react-icons/tb";
+import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 
 import { logout } from "../../providers/session/session-slice";
 
 export const DashboardLayout = ({ children }) => {
   const { data } = useSelector((state) => state.session);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const firstPart = data?.user.id.substring(2, 5);
   const lastPart = data?.user.id.substring(data?.user.id.length - 3);
@@ -45,18 +38,16 @@ export const DashboardLayout = ({ children }) => {
               <Sidebar.Item href="#" icon={HiUser}>
                 Customers
               </Sidebar.Item>
-              <Sidebar.Item icon={HiShoppingBag}>
-                <Link to={"/products"}>Products</Link>
+              <Sidebar.Item icon={MdOutlineProductionQuantityLimits}>
+                <Link to={"/products/list"}>Products</Link>
               </Sidebar.Item>
               <Sidebar.Item icon={HiShoppingBag}>
                 <Link to={"/store"}>Store</Link>
               </Sidebar.Item>
-              <Sidebar.Item icon={HiArrowSmLeft}>
+              <Sidebar.Item icon={TbLogout2}>
                 <button
-                  icon={HiArrowSmLeft}
                   onClick={() => {
                     dispatch(logout());
-                    navigate("/login");
                   }}
                   className="bg-transparent border-none outline-none"
                 >
