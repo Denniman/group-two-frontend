@@ -39,10 +39,6 @@ export const logout = createAsyncThunk("session/logout", async (thunkAPI, { disp
     await logOut();
     await persistor.purge();
     await persistor.flush();
-    // localStorage.removeItem(`persist:${__ROOT_REDUX_STATE_KEY__}`);
-    localStorage.removeItem(`@REDUX_LOCAL_STATE_PERSIST_KEY`);
-    sessionStorage.removeItem("@REDUX_LOCAL_STATE_PERSIST_KEY");
-    location.href = "/login";
     dispatch(reset());
     toast.success("Success");
   } catch (error) {
@@ -103,6 +99,6 @@ const sessionSlice = createSlice({
   },
 });
 
-export const { reset } = sessionSlice.actions;
+export const { reset, resetAssess } = sessionSlice.actions;
 
 export default sessionSlice.reducer;
