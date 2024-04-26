@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Label, TextInput } from "flowbite-react";
@@ -9,6 +9,7 @@ import { registerUser } from "../../providers/session/session-slice";
 
 export const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.session);
   const { emailValidation, loginPasswordValidation, firstNameValidation, lastNameValidation } =
     useFormValidation();
@@ -19,7 +20,9 @@ export const Signup = () => {
   } = useForm();
 
   const onSubmit = (payload) => {
-    dispatch(registerUser({ ...payload }));
+    dispatch(registerUser({ ...payload })).then(() => {
+      navigate("/login");
+    });
   };
 
   const passwordError = Boolean(errors.password?.message);

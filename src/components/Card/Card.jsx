@@ -16,5 +16,5 @@ export const Card = ({ heading, subHeading, children }) => {
 Card.propTypes = {
   children: PropTypes.node,
   heading: PropTypes.string.isRequired,
-  subHeading: PropTypes.string.isRequired,
+  subHeading: PropTypes.number.isRequired,
 };

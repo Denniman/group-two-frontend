@@ -5,6 +5,7 @@ import sessionStorage from "redux-persist/lib/storage/session";
 import { CACHE_VERSION, __ROOT_REDUX_STATE_KEY__ } from "../constants";
 
 import userSession from "./session/session-slice";
+import productsSlice from "./products/products-slice";
 import merchantStoreSlice from "./merchantStore/merchantStore";
 
 const persistConfig = {
@@ -17,6 +18,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   session: userSession,
   merchantStoreSlice,
+  products: productsSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,5 +1,4 @@
 import { network } from "../config";
-import { store } from "../providers/store";
 
 export const login = async (payload) => {
   const { data } = await network.post("/auth/signin", payload);
@@ -12,22 +11,26 @@ export const register = async (payload) => {
 };
 
 export const createStore = async (payload) => {
-  const token = store?.getState()?.session.accessToken;
-  const { data } = await network.post("/merchant/create-store", payload, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const { data } = await network.post("/merchant/create-store", payload);
   return data.payload;
 };
 
 export const logOut = async (payload) => {
-  const token = store?.getState()?.session.accessToken;
+  const { data } = await network.post("/auth/logout", payload);
+  return data.payload;
+};
 
-  const { data } = await network.post("/auth/logout", payload, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const products = async (payload) => {
+  const { data } = await network.post("/merchant/create-product", payload);
+  return data.payload;
+};
+
+export const getMerchantStore = async () => {
+  const { data } = await network.get("/merchant/get-store");
+  return data.payload;
+};
+
+export const getAllProducts = async () => {
+  const { data } = await network.get("/merchant/get-products");
   return data.payload;
 };

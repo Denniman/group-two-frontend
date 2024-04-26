@@ -1,12 +1,6 @@
 import axios from "axios";
+import { store } from "../providers/store";
 
-let token;
-
-export const getStore = (store) => {
-  return (token = store?.getState()?.session.accessToken);
-};
-
-// Set config defaults when creating the instance
 export const network = axios.create({
   baseURL: `${import.meta.env.VITE_BASE_URI}/api/v1/`,
 });
@@ -14,9 +8,12 @@ export const network = axios.create({
 // Add a request interceptor
 network.interceptors.request.use(
   (config) => {
+    // get the JWT token out of it
+
+    const token = store?.getState()?.session;
     return {
       ...config,
-      headers: { ...config.headers, Authorization: token },
+      headers: { ...config.headers, Authorization: token?.accessToken },
     };
   },
   (error) => {

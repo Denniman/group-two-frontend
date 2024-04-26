@@ -17,6 +17,25 @@ export const useFormValidation = () => {
       message: "Password is required",
     },
   };
+  const productName = {
+    required: {
+      value: true,
+      message: "Product name is required",
+    },
+  };
+  const productCategory = {
+    required: {
+      value: true,
+      message: "Product category is required",
+    },
+  };
+
+  const productDescriptionValidation = {
+    required: {
+      value: true,
+      message: "Product description is required",
+    },
+  };
 
   const businessEmailValidation = {
     pattern: {
@@ -59,10 +78,26 @@ export const useFormValidation = () => {
     },
   };
 
-  const businessNameValidation = {
+  const batchNumber = {
     required: {
       value: true,
-      message: "Business name is required",
+      message: "Batch number is required",
+    },
+  };
+  const productQuantity = {
+    required: {
+      value: true,
+      message: "Quantity is required",
+    },
+    min: {
+      value: 1,
+      message: "Product quantity must be at least one",
+    },
+  };
+  const amountValidation = {
+    required: {
+      value: true,
+      message: "Price is required",
     },
   };
 
@@ -82,13 +117,18 @@ export const useFormValidation = () => {
   };
 
   return {
+    productName,
+    batchNumber,
+    productCategory,
     emailValidation,
     phoneValidation,
+    amountValidation,
+    productQuantity,
     lastNameValidation,
     firstNameValidation,
-    businessNameValidation,
     businessEmailValidation,
     signUpPasswordValidation,
     loginPasswordValidation,
+    productDescriptionValidation,
   };
 };

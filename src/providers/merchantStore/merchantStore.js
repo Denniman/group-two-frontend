@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createStore } from "../../network";
+import { createStore, getMerchantStore } from "../../network";
 
 const initialState = {
   error: null,
@@ -15,17 +15,27 @@ export const createMerchantStore = createAsyncThunk(
   "merchantStore/create",
   async (payload, thunkAPI) => {
     try {
-      const data = await createStore(payload);
-      console.log("data!", data);
+      const { store } = await createStore(payload);
       toast.success("Store created successfully!");
-      return data;
+      return store;
     } catch (error) {
-      const message = error.message;
+      const message = error?.response?.data?.message;
       toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
 );
+
+export const getStore = createAsyncThunk("merchantStore/get-store", async (_, thunkAPI) => {
+  try {
+    const data = await getMerchantStore();
+    return data;
+  } catch (error) {
+    const message = error?.response?.data?.message;
+    toast.error(message);
+    return thunkAPI.rejectWithValue(message);
+  }
+});
 
 const merchantStoreSlice = createSlice({
   name: "merchantStore",
@@ -42,11 +52,24 @@ const merchantStoreSlice = createSlice({
     builder.addCase(createMerchantStore.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
-      state.storeName = action.payload;
+      state.storeId = action.payload.storeId;
+      state.storeName = action.payload.storeName;
     });
     builder.addCase(createMerchantStore.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      state.error = action.error.message;
+    });
+    builder.addCase(getStore.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getStore.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.storeId = action.payload.id;
+      state.storeName = action.payload.storeName;
+    });
+    builder.addCase(getStore.rejected, (state, action) => {
+      state.isLoading = false;
       state.error = action.error.message;
     });
   },
