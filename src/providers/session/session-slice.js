@@ -2,7 +2,6 @@ import { toast } from "sonner";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login, register, logOut } from "../../network";
 import { persistor } from "../store";
-import { __ROOT_REDUX_STATE_KEY__ } from "../../constants";
 
 const initialState = {
   error: null,
@@ -40,14 +39,12 @@ export const logout = createAsyncThunk("session/logout", async (thunkAPI, { disp
     await logOut();
     await persistor.purge();
     await persistor.flush();
-    localStorage.removeItem(`persist:${__ROOT_REDUX_STATE_KEY__}`);
-    localStorage.removeItem(`persist:${__ROOT_REDUX_STATE_KEY__}`);
-    // Remove a specific key from sessionStorage
+    // localStorage.removeItem(`persist:${__ROOT_REDUX_STATE_KEY__}`);
+    localStorage.removeItem(`@REDUX_LOCAL_STATE_PERSIST_KEY`);
     sessionStorage.removeItem("@REDUX_LOCAL_STATE_PERSIST_KEY");
-
-    toast.success("Success");
+    location.href = "/login";
     dispatch(reset());
-    window.location.href = "/login";
+    toast.success("Success");
   } catch (error) {
     const message = error?.response?.data.message;
     toast.error(message);

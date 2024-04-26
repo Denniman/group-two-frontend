@@ -143,7 +143,7 @@ export const ProductsForm = () => {
 
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="batchNumber" value="Batch Number" />
+                  <Label htmlFor="batchNumber" value="Batch number" />
                 </div>
 
                 <Controller
@@ -213,6 +213,8 @@ export const ProductsForm = () => {
                 />
               </div>
             </div>
+
+            <Label value="Product image" />
 
             <div className="flex w-full items-center justify-center mt-5">
               <Label

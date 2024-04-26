@@ -8,8 +8,8 @@ import { getStore } from "../../providers/merchantStore/merchantStore";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
-  const { storeName } = useSelector((state) => state.merchantStoreSlice);
   const { products } = useSelector((state) => state.products);
+  const { storeName } = useSelector((state) => state.merchantStoreSlice);
 
   const dispatch = useDispatch();
 
@@ -23,14 +23,14 @@ export const Dashboard = () => {
     if (storeName) {
       navigate("/products");
     } else {
-      navigate("/store");
+      navigate("/creat-store");
     }
   };
 
   return (
     <div>
       <div className="flex gap-2 flex-col md:flex-row">
-        <div className="flex-1">
+        <div className="basis-1/3">
           <Card heading="Total Transactios" subHeading={405} className="flex-1 w-32">
             <Button color="light" onClick={() => navigate("/transactions")}>
               View more
@@ -49,7 +49,7 @@ export const Dashboard = () => {
             </Button>
           </Card>
         </div>
-        <div className="flex-1  w-32">
+        <div className="basis-1/3">
           <Card heading="Total Products" subHeading={products?.length || 0} className="w-32">
             <Button color="light" onClick={() => navigate("/products")}>
               View more
@@ -68,8 +68,8 @@ export const Dashboard = () => {
             </Button>
           </Card>
         </div>
-        <div className="flex-1">
-          <Card heading="Total Orders" subHeading={195}>
+        <div className="basis-1/3">
+          <Card heading="Total Customers" subHeading={products?.length || 0} className="w-32">
             <Button color="light" onClick={() => navigate("/customers")}>
               View more
               <svg
