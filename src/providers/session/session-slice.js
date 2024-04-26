@@ -2,7 +2,7 @@ import { toast } from "sonner";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login, register, logOut } from "../../network";
 import { persistor } from "../store";
-// import { __ROOT_REDUX_STATE_KEY__ } from "../../constants";
+import { __ROOT_REDUX_STATE_KEY__ } from "../../constants";
 
 const initialState = {
   error: null,
@@ -35,12 +35,19 @@ export const registerUser = createAsyncThunk("session/signup", async (payload, t
   }
 });
 
-export const logout = createAsyncThunk("session/logout", async (thunkAPI) => {
+export const logout = createAsyncThunk("session/logout", async (thunkAPI, { dispatch }) => {
   try {
     await logOut();
-    persistor.purge();
-    persistor.flush();
+    await persistor.purge();
+    await persistor.flush();
+    localStorage.removeItem(`persist:${__ROOT_REDUX_STATE_KEY__}`);
+    localStorage.removeItem(`persist:${__ROOT_REDUX_STATE_KEY__}`);
+    // Remove a specific key from sessionStorage
+    sessionStorage.removeItem("@REDUX_LOCAL_STATE_PERSIST_KEY");
+
     toast.success("Success");
+    dispatch(reset());
+    window.location.href = "/login";
   } catch (error) {
     const message = error?.response?.data.message;
     toast.error(message);
@@ -55,6 +62,10 @@ const sessionSlice = createSlice({
     reset: (state) => {
       state.isLoading = false;
       state.signUpSuccess = false;
+    },
+    resetAssess: (state) => {
+      state.isLoading = false;
+      state.accessToken = null;
     },
   },
   extraReducers: (builder) => {
