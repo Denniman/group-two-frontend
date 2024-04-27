@@ -6,6 +6,6 @@ export * from "./customers";
 export * from "./storeForm";
 export * from "./dashboard";
 export * from "./storeDetails";
-export * from "./productsForm";
-export * from "./productsList";
+export * from "./productForm";
+export * from "./productList";
 export * from "./transactions";

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getProducts } from "../../providers/products/products-slice";
 
-export const ProductsList = () => {
+export const ProductList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { products, isLoading } = useSelector((state) => state.products);

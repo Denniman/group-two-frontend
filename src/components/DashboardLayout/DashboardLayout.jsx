@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import { Sidebar, TextInput } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { HiUser, HiSearch, HiChartPie, HiViewBoards, HiShoppingBag } from "react-icons/hi";
 import { TbLogout2 } from "react-icons/tb";
+import { HiUser, HiSearch, HiChartPie, HiViewBoards, HiShoppingBag } from "react-icons/hi";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 
-import { resetAssess } from "../../providers/session/session-slice";
+import { logout } from "../../providers/session/session-slice";
 
 export const DashboardLayout = ({ children }) => {
   const { data } = useSelector((state) => state.session);
@@ -57,7 +57,7 @@ export const DashboardLayout = ({ children }) => {
               <Sidebar.Item icon={TbLogout2}>
                 <button
                   onClick={() => {
-                    dispatch(resetAssess());
+                    dispatch(logout());
                   }}
                   className="bg-transparent border-none outline-none"
                 >
