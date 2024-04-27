@@ -1,7 +1,6 @@
 import { toast } from "sonner";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login, register, logOut } from "../../network";
-import { persistor } from "../store";
 
 const initialState = {
   error: null,
@@ -34,12 +33,9 @@ export const registerUser = createAsyncThunk("session/signup", async (payload, t
   }
 });
 
-export const logout = createAsyncThunk("session/logout", async (thunkAPI, { dispatch }) => {
+export const logout = createAsyncThunk("session/logout", async (thunkAPI) => {
   try {
     await logOut();
-    await persistor.purge();
-    await persistor.flush();
-    dispatch(reset());
     toast.success("Success");
   } catch (error) {
     const message = error?.response?.data.message;
@@ -55,10 +51,6 @@ const sessionSlice = createSlice({
     reset: (state) => {
       state.isLoading = false;
       state.signUpSuccess = false;
-    },
-    resetAssess: (state) => {
-      state.isLoading = false;
-      state.accessToken = null;
     },
   },
   extraReducers: (builder) => {
@@ -91,6 +83,7 @@ const sessionSlice = createSlice({
     });
     builder.addCase(logout.fulfilled, (state) => {
       state.isLoading = false;
+      state.accessToken = null;
     });
     builder.addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
