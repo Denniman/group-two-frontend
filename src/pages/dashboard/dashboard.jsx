@@ -21,9 +21,9 @@ export const Dashboard = () => {
 
   const handleNavigation = () => {
     if (storeName) {
-      navigate("/products");
+      navigate("/products/list");
     } else {
-      navigate("/creat-store");
+      navigate("/store/creat-store");
     }
   };
 
