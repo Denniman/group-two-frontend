@@ -12,8 +12,8 @@ import {
   Customers,
   Dashboard,
   StoreDetails,
-  ProductsForm,
-  ProductsList,
+  ProductForm,
+  ProductList,
   Transactions,
 } from "../pages";
 
@@ -86,7 +86,7 @@ export function RootRoutes() {
           element={
             <PrivateRoute>
               <DashboardLayout>
-                <ProductsList />
+                <ProductList />
               </DashboardLayout>
             </PrivateRoute>
           }
@@ -96,7 +96,7 @@ export function RootRoutes() {
           element={
             <PrivateRoute>
               <DashboardLayout>
-                <ProductsForm />
+                <ProductForm />
               </DashboardLayout>
             </PrivateRoute>
           }

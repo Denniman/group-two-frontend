@@ -9,7 +9,7 @@ import { Button, FileInput, Label, TextInput, Textarea } from "flowbite-react";
 import { useFormValidation } from "../../hooks";
 import { createProducts, getProducts } from "../../providers/products/products-slice";
 
-export const ProductsForm = () => {
+export const ProductForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
