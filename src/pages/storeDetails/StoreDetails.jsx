@@ -9,7 +9,7 @@ import { getStore } from "../../providers/merchantStore/merchantStore";
 export const StoreDetails = () => {
   const dispatch = useDispatch();
 
-  const { storeName, storeId, isLoading } = useSelector((state) => state.merchantStoreSlice);
+  const { storeName, storeUrl, isLoading } = useSelector((state) => state.merchantStoreSlice);
 
   useEffect(() => {
     if (!storeName) {
@@ -21,7 +21,7 @@ export const StoreDetails = () => {
     return <LoadingSpiner />;
   }
   const handleCopyToClipboard = () => {
-    navigator.clipboard.writeText(storeId);
+    navigator.clipboard.writeText(storeUrl);
     toast.success("Copied successfully!");
   };
   return (
@@ -33,7 +33,7 @@ export const StoreDetails = () => {
 
       <div className="mt-6 relative">
         <Label htmlFor="storeUrl" value="Store url" />
-        <TextInput id="storeUrl" disabled value={storeId} />
+        <TextInput id="storeUrl" disabled value={storeUrl} />
 
         <button onClick={handleCopyToClipboard} className="absolute top-1/2 right-5">
           <HiOutlineClipboardDocument />
