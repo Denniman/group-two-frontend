@@ -14,6 +14,7 @@ export const ProductForm = () => {
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [imageError, setImageError] = useState("");
   const { isLoading } = useSelector((state) => state.merchantStoreSlice);
 
   const {
@@ -44,6 +45,23 @@ export const ProductForm = () => {
         });
     };
     reader.readAsDataURL(file);
+  };
+
+  const handleFileChange = ({ target }) => {
+    const selectedFile = target?.files?.[0];
+
+    if (selectedFile) {
+      const fileSizeInMB = selectedFile.size / (1024 * 1024);
+      if (fileSizeInMB > 1.5) {
+        setImageError("Image size exceeds 1.5 MB. Please choose a smaller image.");
+        setFile(null);
+        setImageUrl(null);
+      } else {
+        setImageError("");
+        setFile(selectedFile);
+        setImageUrl(URL.createObjectURL(selectedFile));
+      }
+    }
   };
 
   return (
@@ -216,6 +234,8 @@ export const ProductForm = () => {
 
             <Label value="Product image" />
 
+            {imageError && <p className="text-red-500">{imageError}</p>}
+
             <div className="flex w-full items-center justify-center mt-5">
               <Label
                 htmlFor="dropzone-file"
@@ -252,11 +272,7 @@ export const ProductForm = () => {
                 <FileInput
                   id="dropzone-file"
                   accept="image/jpeg, image/png, image/webp"
-                  onChange={({ target }) => {
-                    const file = target?.files?.[0];
-                    setFile(file);
-                    setImageUrl(URL.createObjectURL(file));
-                  }}
+                  onChange={handleFileChange}
                   className="hidden"
                 />
               </Label>
