@@ -52,6 +52,7 @@ const merchantStoreSlice = createSlice({
     builder.addCase(createMerchantStore.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
+      state.storeUrl = action.payload.storeUrl;
       state.storeId = action.payload.storeId;
       state.storeName = action.payload.storeName;
     });
