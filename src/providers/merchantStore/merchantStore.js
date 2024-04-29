@@ -4,7 +4,6 @@ import { createStore, getMerchantStore } from "../../network";
 
 const initialState = {
   error: null,
-  data: null,
   storeId: null,
   storeName: null,
   storeUrl: null,
@@ -51,7 +50,6 @@ const merchantStoreSlice = createSlice({
     });
     builder.addCase(createMerchantStore.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
       state.storeUrl = action.payload.storeUrl;
       state.storeId = action.payload.storeId;
       state.storeName = action.payload.storeName;

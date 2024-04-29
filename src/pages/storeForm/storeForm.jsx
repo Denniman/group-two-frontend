@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Label, Spinner, Select, TextInput, Textarea } from "flowbite-react";
@@ -7,6 +8,7 @@ import { createMerchantStore } from "../../providers/merchantStore/merchantStore
 
 export const StoreForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
 
   const [color, setColor] = useState("#000000");
@@ -23,7 +25,9 @@ export const StoreForm = () => {
       return acc;
     }, {});
 
-    dispatch(createMerchantStore({ ...filteredPayload, color, backgroundColor }));
+    dispatch(createMerchantStore({ ...filteredPayload, color, backgroundColor })).then(() => {
+      navigate("/store/info");
+    });
   };
 
   return (
