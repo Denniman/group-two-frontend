@@ -1,23 +1,13 @@
-import { useEffect } from "react";
 import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Card } from "../../components";
-import { getStore } from "../../providers/merchantStore/merchantStore";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const { products } = useSelector((state) => state.products);
   const { storeName } = useSelector((state) => state.merchantStoreSlice);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!storeName) {
-      dispatch(getStore());
-    }
-  }, [dispatch, storeName]);
 
   const handleNavigation = () => {
     if (storeName) {
