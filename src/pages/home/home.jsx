@@ -1,10 +1,10 @@
 import { Button, Navbar } from "flowbite-react";
-import { FooterComp, LogoImg } from "../../components";
 import { Link } from "react-router-dom";
 import { FaArrowTrendUp } from "react-icons/fa6";
-import shopImg from "../../assets/images/shoponline.jpg";
-import global from "../../assets/images/ecommerce.jpg";
 
+import shopImg from "../../assets/images/shoponline.jpg";
+import { FooterComp, LogoImg } from "../../components";
+import global from "../../assets/images/ecommerce.jpg";
 
 export const Home = () => {
   return (
@@ -18,14 +18,14 @@ export const Home = () => {
             </Navbar.Brand>
             <div className="flex md:order-2">
               <Link to="/login">
-              <Button size="sm" color="dark" outline className="hidden md:flex mr-4">
-                Login
-              </Button>
+                <Button size="sm" color="dark" outline className="hidden md:flex mr-4">
+                  Login
+                </Button>
               </Link>
               <Link to="/signup">
-              <Button size="sm" color="dark" className="hidden sm:flex">
-                SignUp
-              </Button>
+                <Button size="sm" color="dark" className="hidden sm:flex">
+                  SignUp
+                </Button>
               </Link>
               <Navbar.Toggle />
             </div>
@@ -45,18 +45,19 @@ export const Home = () => {
               <span className="block">Level Up!</span> Your Business
             </h1>
             <p className="text-xl text-slate-800">
-              Enjoy the unlimited possibilities of an online store with SwitchCommerce.
+              Enjoy the unlimited possibilities of an online store with{" "}
+              <span className="subpixel-antialiased">SwitchCommerce.</span>
             </p>
             <Link to="/signup">
-            <Button size="lg" className="px-8" color="dark">
-              Get Started
-            </Button>
+              <Button size="lg" className="px-8" color="dark">
+                Get Started
+              </Button>
             </Link>
           </div>
           {/* Right side */}
           <div className="relative md:flex-1 ">
             <svg
-            className="md:w-[400px] md:h-[400px] xl:w-[500px] xl:h-[500px]"
+              className="md:w-[400px] md:h-[400px] xl:w-[500px] xl:h-[500px]"
               width="300px"
               height="300px"
               viewBox="-2.4 -2.4 28.80 28.80"
@@ -64,15 +65,15 @@ export const Home = () => {
               xmlns="http://www.w3.org/2000/svg"
               transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)"
               stroke="#000000"
-              stroke-width="0.00024000000000000003"
+              strokeWidth="0.00024000000000000003"
             >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g
                 id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 stroke="#CCCCCC"
-                stroke-width="0.096"
+                strokeWidth="0.096"
               ></g>
               <g id="SVGRepo_iconCarrier">
                 {" "}
@@ -87,15 +88,15 @@ export const Home = () => {
               </g>
             </svg>
             <svg
-            className="animate-bounce absolute sm:top-8 sm:right-28 md:top-4 md:right-12  xl:top-6 xl:right-28 right-8 top-4 md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px]"
+              className="animate-bounce absolute sm:top-8 sm:right-28 md:top-4 md:right-12  xl:top-6 xl:right-28 right-8 top-4 md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px]"
               width="50px"
               height="50px"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+              <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
                 {" "}
                 <path
@@ -107,13 +108,13 @@ export const Home = () => {
                   fill="#4ac0f2"
                 ></path>{" "}
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M9.59235 5H13.8141C14.8954 5 14.3016 6.664 13.8638 7.679L13.3656 8.843L13.2983 9C13.7702 8.97651 14.2369 9.11054 14.6282 9.382C16.0921 10.7558 17.2802 12.4098 18.1256 14.251C18.455 14.9318 18.5857 15.6958 18.5019 16.451C18.4013 18.3759 16.8956 19.9098 15.0182 20H8.38823C6.51033 19.9125 5.0024 18.3802 4.89968 16.455C4.81587 15.6998 4.94656 14.9358 5.27603 14.255C6.12242 12.412 7.31216 10.7565 8.77823 9.382C9.1696 9.11054 9.63622 8.97651 10.1081 9L10.0301 8.819L9.54263 7.679C9.1068 6.664 8.5101 5 9.59235 5Z"
                   stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>{" "}
                 <path
                   d="M13.2983 9.75C13.7125 9.75 14.0483 9.41421 14.0483 9C14.0483 8.58579 13.7125 8.25 13.2983 8.25V9.75ZM10.1081 8.25C9.69391 8.25 9.35812 8.58579 9.35812 9C9.35812 9.41421 9.69391 9.75 10.1081 9.75V8.25ZM15.9776 8.64988C16.3365 8.44312 16.4599 7.98455 16.2531 7.62563C16.0463 7.26671 15.5878 7.14336 15.2289 7.35012L15.9776 8.64988ZM13.3656 8.843L13.5103 9.57891L13.5125 9.57848L13.3656 8.843ZM10.0301 8.819L10.1854 8.08521L10.1786 8.08383L10.0301 8.819ZM8.166 7.34357C7.80346 7.14322 7.34715 7.27469 7.1468 7.63722C6.94644 7.99976 7.07791 8.45607 7.44045 8.65643L8.166 7.34357ZM13.2983 8.25H10.1081V9.75H13.2983V8.25ZM15.2289 7.35012C14.6019 7.71128 13.9233 7.96683 13.2187 8.10752L13.5125 9.57848C14.3778 9.40568 15.2101 9.09203 15.9776 8.64988L15.2289 7.35012ZM13.2209 8.10709C12.2175 8.30441 11.1861 8.29699 10.1854 8.08525L9.87486 9.55275C11.0732 9.80631 12.3086 9.81521 13.5103 9.57891L13.2209 8.10709ZM10.1786 8.08383C9.47587 7.94196 8.79745 7.69255 8.166 7.34357L7.44045 8.65643C8.20526 9.0791 9.02818 9.38184 9.88169 9.55417L10.1786 8.08383Z"
@@ -128,44 +129,44 @@ export const Home = () => {
         <div className="flex flex-col md:flex-row gap-8 max-w-screen-xl justify-center items-center p-8 sm:py-48 border-t-2">
           {/* Left side */}
           <div className="flex-1">
-          <img src={shopImg} className=" filter drop-shadow-xl rounded-xl"/>
+            <img src={shopImg} className=" filter drop-shadow-xl rounded-xl" />
           </div>
           {/* Right side */}
           <div className=" flex-1 flex flex-col gap-6">
             <h1 className="text-4xl md:text-5xl font-semibold text-slate-700">
-              Get your own ecommerce store in a few clicks!
+              Get your customized ecommerce store in few clicks!
             </h1>
-            <p className="text-xl text-slate-800 ">
-              Register your business and build your own custom ecommerce store in just a few easy steps. It's fast, simple and reliable.
+            <p className="text-lg text-slate-800 ">
+              {
+                "Register your business and build your own custom ecommerce store in just few easy steps. It's fast, simple and reliable."
+              }
             </p>
             <Link to="/signup">
-            <Button size="lg" color="dark" outline>
-             <span> Learn More </span> <FaArrowTrendUp className="ml-0.5 mt-0.5"/>
-            </Button>
+              <Button size="lg" color="dark" outline>
+                <span> Learn More </span> <FaArrowTrendUp className="ml-0.5 mt-0.5" />
+              </Button>
             </Link>
           </div>
         </div>
 
         {/* Other Section 2*/}
         <div className="flex flex-col md:flex-row gap-8 max-w-screen-xl justify-center items-center p-8 sm:py-48 border-t-2">
-          
           {/* Left side */}
           <div className=" flex-1 flex flex-col gap-6">
-            <h1 className="md:text-7xl text-5xl font-semibold text-slate-700">
-              Go Global! 
-            </h1>
+            <h3 className="md:text-6xl text-5xl font-semibold text-slate-700">Go Global!</h3>
             <p className="text-xl text-slate-800 ">
-              Tap into the unlimited possibilies of a global market. Sell to anyone, anywhere, anytime!
+              Tap into the unlimited possibilies of a global market. Sell to anyone, anywhere,
+              anytime!
             </p>
             <Link to="/signup">
-            <Button size="lg" color="dark" outline>
-             Open a free account
-            </Button>
+              <Button size="lg" color="dark" outline>
+                Open a free account
+              </Button>
             </Link>
           </div>
           {/* Right side */}
           <div className="flex-1  ">
-          <img src={global} className=" filter drop-shadow-xl rounded-xl"/>
+            <img src={global} className=" filter drop-shadow-xl rounded-xl" />
           </div>
         </div>
       </div>

@@ -37,11 +37,6 @@ export const PubliceRoute = ({ children }) => {
     return <Navigate replace to={APP_ROUTES.DASHBOARD} />;
   }
 
-  // user is not logged in and is visiting the base route [/]
-  if (location.pathname === APP_ROUTES.HOME_URL) {
-    return <Navigate to={APP_ROUTES.LOGIN} replace />;
-  }
-
   if (isPrivateRoute(location.pathname)) {
     return <Navigate to={APP_ROUTES.LOGIN} replace />;
   }
