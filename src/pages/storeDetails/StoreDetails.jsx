@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 import { useSelector, useDispatch } from "react-redux";
 import { HiOutlineClipboardDocument } from "react-icons/hi2";
-import { Label, TextInput } from "flowbite-react";
-import { LoadingSpiner } from "../../components";
+import { TextInput } from "flowbite-react";
+
 import { getStore } from "../../providers/merchantStore/merchantStore";
 
 export const StoreDetails = () => {
   const dispatch = useDispatch();
 
-  const { storeName, storeUrl, isLoading } = useSelector((state) => state.merchantStoreSlice);
+  const { storeName, storeUrl } = useSelector((state) => state.merchantStoreSlice);
 
   useEffect(() => {
     if (!storeName) {
@@ -17,25 +17,23 @@ export const StoreDetails = () => {
     }
   }, [dispatch, storeName]);
 
-  if (isLoading) {
-    return <LoadingSpiner />;
-  }
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(storeUrl);
-    toast.success("Copied successfully!");
+    toast.success("Copied URL!");
   };
   return (
     <section className="w-1/2 m-auto">
+      <h2 className="text-xl mb-10 mt-3">Store Details</h2>
       <div>
-        <Label htmlFor="storeName" value="Store name" />
-        <TextInput id="storeName" disabled value={storeName} />
+        <p className="text-lg">Store Name</p>
+        <TextInput id="storeName" disabled readOnly value={storeName} sizing="sm" />
       </div>
 
-      <div className="mt-6 relative">
-        <Label htmlFor="storeUrl" value="Store url" />
-        <TextInput id="storeUrl" disabled value={storeUrl} />
+      <div className="mt-6 relative ">
+        <p className="text-lg">Store URL</p>
+        <TextInput id="storeUrl" disabled readOnly value={storeUrl} sizing="sm" />
 
-        <button onClick={handleCopyToClipboard} className="absolute top-1/2 right-5">
+        <button onClick={handleCopyToClipboard} className="absolute top-9 right-5">
           <HiOutlineClipboardDocument />
         </button>
       </div>

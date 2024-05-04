@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ export const StoreForm = () => {
 
   const [color, setColor] = useState("#000000");
 
-  const { isLoading } = useSelector((state) => state.merchantStoreSlice);
+  const { isLoading, storeName } = useSelector((state) => state.merchantStoreSlice);
 
   const { control, handleSubmit } = useForm();
 
@@ -25,10 +25,14 @@ export const StoreForm = () => {
       return acc;
     }, {});
 
-    dispatch(createMerchantStore({ ...filteredPayload, color, backgroundColor })).then(() => {
-      navigate("/store/info");
-    });
+    dispatch(createMerchantStore({ ...filteredPayload, color, backgroundColor }));
   };
+
+  useEffect(() => {
+    if (storeName) {
+      navigate("/store/info");
+    }
+  }, [storeName, navigate]);
 
   return (
     <section className="pb-12">

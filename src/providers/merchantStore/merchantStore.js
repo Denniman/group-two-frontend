@@ -4,7 +4,6 @@ import { createStore, getMerchantStore } from "../../network";
 
 const initialState = {
   error: null,
-  storeId: null,
   storeName: null,
   storeUrl: null,
   isLoading: false,
@@ -51,7 +50,6 @@ const merchantStoreSlice = createSlice({
     builder.addCase(createMerchantStore.fulfilled, (state, action) => {
       state.isLoading = false;
       state.storeUrl = action.payload.storeUrl;
-      state.storeId = action.payload.storeId;
       state.storeName = action.payload.storeName;
     });
     builder.addCase(createMerchantStore.rejected, (state, action) => {
@@ -65,6 +63,7 @@ const merchantStoreSlice = createSlice({
     builder.addCase(getStore.fulfilled, (state, action) => {
       state.isLoading = false;
       state.storeId = action.payload.id;
+      state.storeUrl = action.payload.storeUrl;
       state.storeName = action.payload.storeName;
     });
     builder.addCase(getStore.rejected, (state, action) => {
